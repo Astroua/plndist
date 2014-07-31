@@ -41,4 +41,4 @@ class dpln_gen(rv_continuous):
         return _dlpn_cdf(x, alpha, beta, nu, tau2)
 
 
-dpln = dpln_gen(name="dpln")
+dpln = dpln_gen(name="dpln", a=0.0)

@@ -28,6 +28,12 @@ def _pln_logpdf(x, alpha, nu, tau2):
         norm.logcdf((np.log(x) - nu - alpha * tau2) / np.sqrt(tau2))
 
 
+def _pln_rawmoments(r, alpha, nu, tau2):
+    if alpha > r:
+        return alpha / (alpha - r) * np.exp(r*nu + r**2.*tau2/2)
+    else:
+        return np.NaN
+
 class pln_gen(rv_continuous):
 
     def _pdf(self, x, alpha, nu, tau2):
@@ -39,4 +45,4 @@ class pln_gen(rv_continuous):
     def _cdf(self, x, alpha, nu, tau2):
         return _pln_cdf(x, alpha, nu, tau2)
 
-pln = pln_gen(name="pln")
+pln = pln_gen(name="pln", a=0.0)
